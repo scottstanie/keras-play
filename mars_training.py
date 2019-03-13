@@ -62,6 +62,7 @@ def plot_training(history):
     plt.plot(epochs, val_acc, 'b', label='Validation acc')
     plt.title('Training and validation accuracy')
     plt.legend()
+    plt.savefig("training_accuracy.png")
 
     plt.figure()
 
@@ -69,6 +70,7 @@ def plot_training(history):
     plt.plot(epochs, val_loss, 'b', label='Validation loss')
     plt.title('Training and validation loss')
     plt.legend()
+    plt.savefig("training_loss.png")
 
     plt.show()
 
@@ -79,6 +81,7 @@ def vgg_model():
     base_conv.trainable = False
     model.add(base_conv)
     model.add(layers.Flatten())
+    model.add(layers.Dropout(0.5))
     model.add(layers.Dense(512, activation='relu'))
     model.add(layers.Dense(NUM_CLASSES, activation='softmax'))
     return model
